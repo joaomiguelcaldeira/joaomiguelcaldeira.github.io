@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, viewport-fit=cover"" />
+    <title>João Caldeira's Portfolio</title>
+    <link rel="icon" href="./images/jc.ico" />
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Google Fonts and Font Awesome -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arizonia&family=Montserrat:wght@400;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+    />
+
+    
+  </head>
+    <!-- EMBEDDED LEFT NAVIGATION -->
+    <nav class="sidebar">
+      <button class="menu-toggle" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#linkedin-posts">Posts</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  
+    <!-- Sections -->
+
+    <!-- ... HOME SECTION ... -->
+     <main>
+    <section id="home" class="intro-section">
+      <div class="intro-content">
+        <div class="profile-container">
+          <img src="./images/hero_me.jpg" alt="João Caldeira" class="profile-pic">
+          <div class="profile-info">
+            <div class="location-pin">
+              <i class="fas fa-globe-europe"></i>
+              <span>Lisbon, Portugal</span>
+            </div>
+            <div class="social-links">
+              <a class="icon-btn" href="https://github.com/joaomiguelcaldeira" target="_blank">
+                <i class="fab fa-github"></i>
+              </a>
+              <a class="icon-btn" href="https://www.linkedin.com/in/joao-miguel-caldeira/" target="_blank">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a class="icon-btn" href="./content/joao-caldeira-resume.pdf" target="_blank">
+                <i class="fas fa-file-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="intro-text">
+          <h1 class="intro-title">
+            <span id="dynamic-text">Hi, I'm João!</span>
+          </h1>
+        </div>
+      </div>
+      <div class="scroll-arrow">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <div class="computer-frame">
+        <div class="screen-top">
+          <div class="buttons">
+            <span class="red"></span>
+            <span class="yellow"></span>
+            <span class="green"></span>
+          </div>
+        </div>
+        <div class="computer-screen">
+          <div class="screen-content">
+            <p id="terminal-text"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="experience-section fade-in">
+        <h2>Experience</h2>
+    <div class="experience-container">
+      <div class="experience-box" id="experienceBox">   
+        <div class="timeline" id="timeline"></div> 
+          <div class="experience-item glowable">
+            <div class="experience-header">
+              <h3>Software Engineer</h3>
+              <div>
+              <a href="https://www.infosistema.com/" target="_blank">
+                <img src="images/infosistema-logo.png" alt="Infosistema Logo" class="company-logo-wide" />
+              </a>
+              </div>
+          </div>
+            <p><strong>Mar 2025 - Present</strong></p>
+            <ul class="experience-list">
+              <li>Developing inovative scalable AI-based applications.</li>
+              <li>Stay tuned for more updates 😉</li>
+            </ul>
+            <div class="experience-tags">
+              <span class="tag">C#</span>
+              <span class="tag">.NET</span>
+              <span class="tag">Ollama</span>
+              <span class="tag">MongoDB</span>
+            </div>
+          </div>
+
+          <div class="experience-item glowable">
+            <div class="experience-header">
+              <h3>QA Automation Engineer</h3>
+              <a href="https://www.sky.com/" target="_blank">
+                <img src="images/sky-logo.png" alt="SKY Logo" class="company-logo" />
+              </a>
+          </div>
+            <p><strong>Sep 2023 - Mar 2025</strong></p>
+            
+            <ul class="experience-list">
+                <li>Developed an API telemetry framework to monitor critical user journeys, enhancing performance visibility and reducing service defects.</li>
+                <li>Optimized CI/CD pipelines by integrating automated reporting tools into communication channels, streamlining daily workflows and boosting client adoption.</li>
+                <li>Led a restructuring initiative regarding the automation tests, improving test quality, scope and relevance for client teams.</li>
+                <li>Implemented a strategic API monitoring approach, providing contextual insights and version comparisons to support successful app releases.</li>
+            </ul>
+            
+            <div class="experience-tags">
+              <span class="tag">Jenkins</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Python</span>
+              <span class="tag">Grafana</span>
+              <span class="tag">Docker</span>
+              <span class="tag">AWS</span>
+            </div>
+          </div>
+
+          <div class="experience-item glowable">
+            <div class="experience-header">
+              <h3>Aprentice QA Automation</h3>
+              <a href="https://www.sky.com/" target="_blank">
+                <img src="images/sky-logo.png" alt="SKY Logo" class="company-logo" />
+              </a>
+          </div>
+            <p><strong>Jul 2023 - Sep 2023</strong></p>
+            <ul class="experience-list">
+                <li>Developed and implemented automated frameworks for resilience testing.</li>
+                <li>Conducted automated testing across multiple platforms, including mobile, TV, and web applications.</li>
+                <li>Gained practical experience with QA automation tools such as Selenium, Appium, Playwright, and Cypress.</li>
+            </ul>
+            <div class="experience-tags">
+              <span class="tag">Selenium</span>
+              <span class="tag">Appium</span>
+              <span class="tag">Playwright</span>
+              <span class="tag">Cypress</span>
+              <span class="tag">PyTest</span>
+            </div>
+          </div>
+
+          <div class="experience-item glowable">
+            <div class="experience-header">
+              <h3>MSc in Computer Science and Engineering</h3>
+              <a href="https://tecnico.ulisboa.pt/en/" target="_blank">
+                <img src="images/ist.png" alt="IST Logo" class="company-logo" />
+              </a>
+          </div>
+            <p><strong>Feb 2023 - Nov 2024</strong></p>
+            <ul class="experience-list">
+                <li>Areas of Specialization: Enterprise Systems and IT Service Management.</li>
+                <li>Thesis: <strong><a href="https://scholar.tecnico.ulisboa.pt/records/5sCKuo0FjItdThuN6oBvrOIpHV-UbyyBy_1O" target="_blank"> Dynamic Ensemble of Specialized Models for Multi-Timeframe Stock Market Trend Prediction</a></strong></li>
+            </ul>
+            <div class="experience-tags">
+              <span class="tag">Machine Learning</span>
+              <span class="tag">Autonomous Agents</span>
+              <span class="tag">Advanced Algorithms</span>
+              <span class="tag">AWS</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Quantitative Trading</span>
+
+            </div>
+          </div>
+          <div class="experience-item glowable">
+            <div class="experience-header">
+              <h3>BSc in Computer Science and Engineering</h3>
+              <a href="https://tecnico.ulisboa.pt/en/" target="_blank">
+                <img src="images/ist.png" alt="IST Logo" class="company-logo" />
+              </a>
+          </div>
+            <p><strong>Sep 2018 - Feb 2023</strong></p>
+            <ul class="experience-list">
+              <li>Mentored first-year students offering academic guidance and helping them navigate campus resources.</li>
+          </ul>
+            <div class="experience-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Java</span>
+              <span class="tag">C</span>
+              <span class="tag">SQL</span>
+              <span class="tag">OOP</span>
+              <span class="tag">Data Structures</span>
+              <span class="tag">Algorithms</span>
+              <span class="tag">AI</span>
+              <span class="tag">Computer Networks</span>
+              <span class="tag">Operating Systems</span>
+              
+            </div>
+          </div>
+      </div>
+    </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="projects-section fade-in">
+        <h2>Projects</h2>
+
+        <div class="projects-container">
+
+          <div class="project-item">
+            <div class="project-image-wrapper">
+              <img src="images/portfolio.jpg"
+                   data-gif="images/portfolio.jpg" 
+                   data-static="images/portfolio.jpg"
+                   class="project-image">
+            </div>
+            <div class="project-info">
+              <h3>Web Portfolio</h3>
+              <p class="project-description">
+                A personal portfolio website, built using HTML, CSS, and JavaScript.
+                This project represents my first steps into front-end web development and design.<br>
+                Hope you're enjoying it!
+              </p>
+              <div class="project-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <a href="https://github.com/joaomiguelcaldeira/joaomiguelcaldeira.io" 
+                 class="project-button" target="_blank">
+                🚀 View on GitHub
+              </a>
+            </div>
+          </div>
+      
+          <div class="project-item">
+            <div class="project-image-wrapper">
+              <img src="images/ricochet_robots.png"
+                   data-gif="images/ricochet_robots.gif" 
+                   data-static="images/ricochet_robots.png"
+                   class="project-image">
+            </div>
+            <div class="project-info">
+              <h3>Ricochet Robots</h3>
+              <p class="project-description">
+                Program to solve the Ricochet-Robots puzzle game in the least amount of plays possible in the quickest time.
+                This objective is formulated as a search problem using a search tree. 
+                With the search tree in place, an algorithm may be used to traverse the tree and find the solution.
+                The chosen algorithm was the RBFS (Recursive Best First Search) algorithm.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Search Tree</span>
+                <span class="tag">RBFS</span>
+              </div>
+              <a href="https://github.com/joaomiguelcaldeira/Ricochet-Robots" 
+                 class="project-button" target="_blank">
+                🚀 View on GitHub
+              </a>
+            </div>
+          </div>
+      
+          <button id="showMoreBtn" class="show-more-btn">More Projects</button>
+          <!-- Hidden projects sub-section -->
+
+          <div class="project-item hidden">
+            <div class="project-image-wrapper">
+              <img src="images/vertex_capacity.png"
+                   data-gif="images/vertex_capacity.gif" 
+                   data-static="images/vertex_capacity.png"
+                   class="project-image">
+            </div>
+            <div class="project-info">
+              <h3>Vertex Capacity Graph</h3>
+              <p class="project-description">
+                Implements Dinic’s algorithm to calculate the maximum flow in a quadrangular graph with vertex capacities and super sources, to solve addressing a conceptual optimization problem.
+              </p>
+          
+              <div class="project-tags">
+                <span class="tag">C++</span>
+                <span class="tag">Graphs</span>
+                <span class="tag">Maximum Flow</span>
+              </div>
+              <a href="https://github.com/joaomiguelcaldeira/Vertex-Capacity-Graph" 
+                 class="project-button" target="_blank">
+                🚀 View on GitHub
+              </a>
+            </div>
+          </div>
+      
+          <div class="project-item hidden">
+            <div class="project-image-wrapper">
+              <img src="images/navy_network.png"
+                   data-gif="images/navy_network.gif" 
+                   data-static="images/navy_network.png"
+                   class="project-image">
+            </div>
+            <div class="project-info">
+              <h3>MST with Union-Find</h3>
+              <p class="project-description">
+                Solves a transportation network problem of maximum connection at the lowest cost possible.
+                Implements Kruskal's algorithm to find the minimum spanning tree (MST) of a graph using the Union-Find by ranks data structure.
+              </p>
+              <div class="project-tags">
+                <span class="tag">C</span>
+                <span class="tag">Graphs</span>
+                <span class="tag">MST</span>
+                <span class="tag">Union-Find</span>
+              </div>
+              <a href="https://github.com/joaomiguelcaldeira/MST-Union-Find" 
+                 class="project-button" target="_blank">
+                🚀 View on GitHub
+              </a>
+            </div>
+          </div>
+      
+          <div class="project-item hidden">
+            <div class="project-image-wrapper">
+              <img src="images/suffix_tree.jpg"
+                   data-gif="images/suffix_tree.jpg" 
+                   data-static="images/suffix_tree.jpg"
+                   class="project-image">
+            </div>
+            <div class="project-info">
+              <h3>Circular String Linearization</h3>
+              <p class="project-description">
+                Project to find the smallest lexicographic cyclic rotation in linear time.
+                Achieved by implementing a Suffix Tree data structure, using the Ukkonen’s algorithm, with the given string repeated one time.
+              </p>
+              <div class="project-tags">
+                <span class="tag">C</span>
+                <span class="tag">Suffix Tree</span>
+              </div>
+              <a href="https://github.com/joaomiguelcaldeira/Circular-String-Linearization" 
+                 class="project-button" target="_blank">
+                🚀 View on GitHub
+              </a>
+            </div>
+          </div>
+
+        </div>
+    </section>
+
+    <!-- LINKEDIN POSTS SECTION -->
+    <section id="linkedin-posts" class="linkedin-section fade-in">
+      <h2>Recent Posts</h2>
+  <div class="linkedin-wrapper">
+      <div class="linkedin-track">
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7304943951248027648" height="399" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7264336633762619393" height="399" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7086391978329804800" height="399" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+      </div>
+  </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section fade-in">
+        <h2>Contact Me</h2>
+        <div class="contact-wrapper">
+          <form action="https://formspree.io/f/mldjrzvl" method="POST" class="contact-form" id="contactForm">
+            <div class="form-group">
+              <input type="email" name="email" placeholder="Your Email" required class="form-input" />
+            </div>
+      
+            <div class="form-group">
+              <textarea name="message" placeholder="Your Message" required class="form-input"></textarea>
+            </div>
+      
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+      
+          <div id="thankYouAnimation" class="thank-you">
+            <p></p>
+          </div>
+        </div>
+    </section>
+  </main>
+  <footer class="footnote">
+    <div class="social-links-footnote">
+      <a href="https://github.com/joaomiguelcaldeira" target="_blank" class="social-icon github" aria-label="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/joao-miguel-caldeira/" target="_blank" class="social-icon linkedin" aria-label="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </div>
+    <p>&copy; 2025 João Caldeira. All rights reserved.</p>
+  </footer>
+  </body>
+  <script type="module" src="js/main.js" defer></script>
+</html>
