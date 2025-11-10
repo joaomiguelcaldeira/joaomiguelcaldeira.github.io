@@ -31,9 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Terminal text typing effect in the about section
   const commandText = "joaocaldeira@Caldeira-Mac ~ % cat about_me.txt\n";
   const aboutText = `
-My name is João Caldeira and I enjoy solving problems and creating innovative AI based solutions.
+My name is João Caldeira and I enjoy solving problems and automating away boring tasks with AI as my sidekick.
 
-I have a particular interest in financial markets and algorithmic trading strategies (profitable ones).
+I have a particular interest in financial markets and algorithmic trading strategies (profitable ones 🤞).
 
 Applying algorithms to real-world problems is one of the most satisfying things there is for me.
 
