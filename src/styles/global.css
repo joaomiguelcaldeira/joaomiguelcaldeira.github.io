@@ -15,11 +15,13 @@
   --text-muted: rgba(233, 233, 240, 0.62);
   --text-dim: rgba(233, 233, 240, 0.4);
 
-  /* electric accent */
-  --accent: #38bdf8;
-  --accent-2: #818cf8;
-  --accent-soft: rgba(56, 189, 248, 0.14);
-  --accent-glow: rgba(56, 189, 248, 0.45);
+  /* accent — change these three to reflavor the whole site */
+  --accent: #fb7185;
+  --accent-2: #f59e0b;
+  --accent-rgb: 251, 113, 133;
+
+  --accent-soft: rgba(var(--accent-rgb), 0.14);
+  --accent-glow: rgba(var(--accent-rgb), 0.45);
   --gradient: linear-gradient(120deg, var(--accent), var(--accent-2));
 
   /* type */

@@ -39,7 +39,10 @@
     let points: P[] = [];
 
     const mouse = { x: -9999, y: -9999 };
-    const ACCENT = '56, 189, 248';
+    const ACCENT =
+      getComputedStyle(document.documentElement)
+        .getPropertyValue('--accent-rgb')
+        .trim() || '56, 189, 248';
     const LINK_DIST = 140;
     const MOUSE_DIST = 180;
 
