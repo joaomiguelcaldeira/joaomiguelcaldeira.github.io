@@ -35,11 +35,19 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    title: 'Web Portfolio',
+    title: 'Portfolio v2',
     description:
-      'This very website — rebuilt with Astro, scroll-snap sections and an interactive particle backdrop. My playground for front-end design.',
+      'This very website — built with Astro: full-screen scroll-snap sections, an interactive particle backdrop and a tabbed experience timeline.',
     tags: ['Astro', 'CSS', 'JavaScript'],
     link: 'https://github.com/joaomiguelcaldeira/joaomiguelcaldeira.github.io',
+    linkLabel: 'View on GitHub',
+  },
+  {
+    title: 'Portfolio v1',
+    description:
+      'My first portfolio — a single-page scrolling site built from scratch with vanilla HTML, CSS and JavaScript. Where I first explored front-end design.',
+    tags: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+    link: 'https://github.com/joaomiguelcaldeira/portfolio-v1',
     linkLabel: 'View on GitHub',
   },
   {

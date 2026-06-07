@@ -11,6 +11,17 @@ const roles = ['Software Engineer', 'AI Builder', 'Problem Solver', 'Algorithmic
       <div class="location">
         <i class="fas fa-location-dot"></i><span>Lisbon, Portugal</span>
       </div>
+      <div class="hero-socials">
+        <a href="https://github.com/joaomiguelcaldeira" target="_blank" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/joao-miguel-caldeira/" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="mailto:joaomiguel.caldeira@gmail.com" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
     </div>
 
     <div class="hero-text">
@@ -34,17 +45,19 @@ const roles = ['Software Engineer', 'AI Builder', 'Problem Solver', 'Algorithmic
         </a>
       </div>
 
-      <div class="hero-socials reveal" style="--reveal-delay: 400ms">
-        <a href="https://github.com/joaomiguelcaldeira" target="_blank" aria-label="GitHub">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/joao-miguel-caldeira/" target="_blank" aria-label="LinkedIn">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="mailto:joaomiguel.caldeira@gmail.com" aria-label="Email">
-          <i class="fas fa-envelope"></i>
-        </a>
-      </div>
+      <a
+        class="hero-badge reveal"
+        style="--reveal-delay: 380ms"
+        href="https://doi.org/10.1007/s10614-025-11252-0"
+        target="_blank"
+        rel="noopener"
+      >
+        <i class="fas fa-newspaper hero-badge-icon"></i>
+        <span class="hero-badge-text">
+          Published in <strong>Computational Economics</strong> (Springer)
+        </span>
+        <i class="fas fa-arrow-up-right-from-square hero-badge-ext"></i>
+      </a>
     </div>
   </div>
 
@@ -56,6 +69,45 @@ const roles = ['Software Engineer', 'AI Builder', 'Problem Solver', 'Algorithmic
 <style>
   .hero {
     justify-content: center;
+  }
+
+  .hero-badge {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.95rem;
+    margin-top: 1.6rem;
+    border-radius: 99px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    transition: border-color var(--t-fast), transform var(--t-fast),
+      box-shadow var(--t-fast), color var(--t-fast);
+  }
+  .hero-badge:hover {
+    color: var(--text);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px -12px var(--accent-glow);
+  }
+  .hero-badge-icon {
+    font-size: 1rem;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .hero-badge strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .hero-badge-ext {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+  }
+  .hero-badge:hover .hero-badge-ext {
+    color: var(--accent);
   }
 
   .hero-grid {
@@ -154,8 +206,8 @@ const roles = ['Software Engineer', 'AI Builder', 'Problem Solver', 'Algorithmic
   .hero-socials {
     display: flex;
     gap: 1.4rem;
-    margin-top: 2rem;
-    font-size: 1.4rem;
+    margin-top: 0.9rem;
+    font-size: 1.3rem;
   }
   .hero-socials a {
     color: var(--text-muted);
@@ -213,6 +265,9 @@ const roles = ['Software Engineer', 'AI Builder', 'Problem Solver', 'Algorithmic
       justify-content: center;
     }
     .hero-tagline {
+      margin-inline: auto;
+    }
+    .hero-badge {
       margin-inline: auto;
     }
     .scroll-cue {

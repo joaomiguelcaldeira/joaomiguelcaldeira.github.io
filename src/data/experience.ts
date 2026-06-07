@@ -1,5 +1,6 @@
 export interface ExperienceItem {
   role: string;
+  short: string; // compact label for the tab rail
   org: string;
   url: string;
   logo: string;
@@ -13,6 +14,7 @@ export interface ExperienceItem {
 export const experience: ExperienceItem[] = [
   {
     role: 'Software Engineer',
+    short: 'Software Engineer',
     org: 'Infosistema',
     url: 'https://www.infosistema.com/',
     logo: '/images/infosistema-logo.png',
@@ -27,6 +29,7 @@ export const experience: ExperienceItem[] = [
   },
   {
     role: 'QA Automation Engineer',
+    short: 'QA Automation Engineer',
     org: 'Sky',
     url: 'https://www.sky.com/',
     logo: '/images/sky-logo.png',
@@ -41,6 +44,7 @@ export const experience: ExperienceItem[] = [
   },
   {
     role: 'Apprentice QA Automation',
+    short: 'QA Automation Apprentice',
     org: 'Sky',
     url: 'https://www.sky.com/',
     logo: '/images/sky-logo.png',
@@ -54,19 +58,21 @@ export const experience: ExperienceItem[] = [
   },
   {
     role: 'MSc in Computer Science & Engineering',
+    short: 'MSc · CS&E',
     org: 'Instituto Superior Técnico',
     url: 'https://tecnico.ulisboa.pt/en/',
     logo: '/images/ist.png',
     period: 'Feb 2023 — Nov 2024',
     points: [
       'Specialization in Enterprise Systems and IT Service Management.',
-      'Thesis: Dynamic Ensemble of Specialized Models for Multi-Timeframe Stock Market Trend Prediction.',
+      'Thesis published in <em>Computational Economics</em> (Springer, 2026): <a class="xp-link" href="https://doi.org/10.1007/s10614-025-11252-0" target="_blank" rel="noopener">Dynamic Ensemble of Specialized Models for Multi-Timeframe Stock Market Trend Prediction</a>.',
     ],
     tags: ['Machine Learning', 'Autonomous Agents', 'Advanced Algorithms', 'Quant Trading'],
     kind: 'education',
   },
   {
     role: 'BSc in Computer Science & Engineering',
+    short: 'BSc · CS&E',
     org: 'Instituto Superior Técnico',
     url: 'https://tecnico.ulisboa.pt/en/',
     logo: '/images/ist.png',

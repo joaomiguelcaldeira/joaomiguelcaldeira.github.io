@@ -1,5 +1,17 @@
 ---
 import { experience } from '../data/experience.ts';
+
+// keep the original data order but render the tab rail grouped
+const work = experience
+  .map((item, i) => ({ item, i }))
+  .filter((x) => x.item.kind === 'work');
+const education = experience
+  .map((item, i) => ({ item, i }))
+  .filter((x) => x.item.kind === 'education');
+const groups = [
+  { label: 'Work', entries: work },
+  { label: 'Education', entries: education },
+];
 ---
 
 <section id="experience" class="section experience">
@@ -7,143 +19,352 @@ import { experience } from '../data/experience.ts';
     <p class="eyebrow reveal">02 — Experience</p>
     <h2 class="section-title reveal">Where I've <span>worked & studied</span></h2>
 
-    <ol class="timeline">
-      {
-        experience.map((item, i) => (
-          <li class="tl-item reveal" style={`--reveal-delay: ${i * 70}ms`}>
-            <span class={`tl-node ${item.kind}`}>
-              <i class={`fas ${item.kind === 'work' ? 'fa-briefcase' : 'fa-graduation-cap'}`} />
-            </span>
-            <div class="tl-card">
-              <div class="tl-head">
-                <div>
-                  <h3>{item.role}</h3>
-                  <a class="tl-org" href={item.url} target="_blank" rel="noopener">
-                    {item.org}
+    <div class="xp reveal">
+      <!-- Tab rail -->
+      <div class="xp-tabs" role="tablist" aria-label="Roles and education">
+        {
+          groups.map((g) => (
+            <div class="xp-group">
+              <span class="xp-group-label">{g.label}</span>
+              {g.entries.map(({ item, i }) => (
+                <button
+                  class="xp-tab"
+                  role="tab"
+                  id={`xp-tab-${i}`}
+                  aria-controls={`xp-panel-${i}`}
+                  aria-selected={i === 0 ? 'true' : 'false'}
+                  tabindex={i === 0 ? 0 : -1}
+                  data-idx={i}
+                >
+                  <span class="xp-tab-logo">
+                    <img src={item.logo} alt="" loading="lazy" />
+                  </span>
+                  <span class="xp-tab-text">
+                    <span class="xp-tab-role">{item.short}</span>
+                    <span class="xp-tab-org">{item.org}</span>
+                  </span>
+                </button>
+              ))}
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Panels -->
+      <div class="xp-panels">
+        {
+          experience.map((item, i) => (
+            <div
+              class="xp-panel"
+              role="tabpanel"
+              id={`xp-panel-${i}`}
+              aria-labelledby={`xp-tab-${i}`}
+              hidden={i !== 0}
+            >
+              <div class="xp-panel-head">
+                <div class="xp-panel-titles">
+                  <h3>
+                    {item.role}
+                    <span class={`xp-badge ${item.kind}`}>
+                      {item.kind === 'work' ? 'Work' : 'Education'}
+                    </span>
+                  </h3>
+                  <a class="xp-org" href={item.url} target="_blank" rel="noopener">
+                    {item.org} <i class="fas fa-arrow-up-right-from-square" />
                   </a>
                 </div>
-                <span class="tl-period">{item.period}</span>
+                <span class="xp-period">{item.period}</span>
               </div>
-              <ul class="tl-points">
+              <ul class="xp-points">
                 {item.points.map((p) => (
-                  <li>{p}</li>
+                  <li set:html={p} />
                 ))}
               </ul>
-              <div class="tl-tags">
+              <div class="xp-tags">
                 {item.tags.map((t) => (
                   <span class="tag">{t}</span>
                 ))}
               </div>
             </div>
-          </li>
-        ))
-      }
-    </ol>
+          ))
+        }
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-  .timeline {
-    list-style: none;
-    position: relative;
-    padding-left: 2.4rem;
-  }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 11px;
-    top: 6px;
-    bottom: 6px;
-    width: 2px;
-    background: linear-gradient(
-      to bottom,
-      var(--accent),
-      var(--accent-2),
-      transparent
-    );
-  }
-  .tl-item {
-    position: relative;
-    padding-bottom: 1.5rem;
-  }
-  .tl-item:last-child {
-    padding-bottom: 0;
-  }
-  .tl-node {
-    position: absolute;
-    left: -2.4rem;
-    top: 2px;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
+  .xp {
     display: grid;
-    place-items: center;
-    font-size: 0.62rem;
-    background: var(--bg-2);
-    border: 2px solid var(--accent);
-    color: var(--accent);
-    z-index: 1;
-  }
-  .tl-node.education {
-    border-color: var(--accent-2);
-    color: var(--accent-2);
+    grid-template-columns: 270px 1fr;
+    gap: 2rem;
+    align-items: start;
   }
 
-  .tl-card {
+  /* ---- Tab rail ---- */
+  .xp-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .xp-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .xp-group-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding-left: 0.3rem;
+    margin-bottom: 0.2rem;
+  }
+  .xp-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    width: 100%;
+    text-align: left;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid transparent;
+    border-left: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background var(--t-fast), border-color var(--t-fast),
+      color var(--t-fast), transform var(--t-fast);
+  }
+  .xp-tab:hover {
+    background: var(--surface);
+    color: var(--text);
+    transform: translateX(2px);
+  }
+  .xp-tab[aria-selected='true'] {
+    background: var(--surface-2);
+    border-left-color: var(--accent);
+    color: var(--text);
+    box-shadow: -8px 0 24px -18px var(--accent-glow);
+  }
+  .xp-tab-logo {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.92);
+    display: grid;
+    place-items: center;
+    padding: 4px;
+  }
+  .xp-tab-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .xp-tab-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+    min-width: 0;
+  }
+  .xp-tab-role {
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .xp-tab-org {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  /* ---- Panel ---- */
+  .xp-panels {
+    position: relative;
+    min-height: 280px;
+  }
+  .xp-panel {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    padding: 1.1rem 1.3rem;
-    transition: border-color var(--t-fast), transform var(--t-fast),
-      box-shadow var(--t-fast);
+    padding: 1.6rem 1.8rem;
+    animation: xpIn 0.4s var(--ease);
   }
-  .tl-card:hover {
-    border-color: var(--border-strong);
-    transform: translateX(4px);
-    box-shadow: 0 14px 40px -24px var(--accent-glow);
+  .xp-panel[hidden] {
+    display: none;
   }
-  .tl-head {
+  @keyframes xpIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .xp-panel-head {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 1rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 1rem;
   }
-  .tl-head h3 {
-    font-size: 1.08rem;
+  .xp-panel-titles h3 {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    flex-wrap: wrap;
   }
-  .tl-org {
-    font-size: 0.9rem;
+  .xp-badge {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 99px;
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted);
+  }
+  .xp-badge.work {
     color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 50%, transparent);
   }
-  .tl-org:hover {
+  .xp-badge.education {
+    color: var(--accent-2);
+    border-color: color-mix(in srgb, var(--accent-2) 50%, transparent);
+  }
+  .xp-org {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.92rem;
+    color: var(--accent);
+    margin-top: 0.35rem;
+  }
+  .xp-org i {
+    font-size: 0.72rem;
+  }
+  .xp-org:hover {
     text-decoration: underline;
   }
-  .tl-period {
+  .xp-period {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     color: var(--text-dim);
     white-space: nowrap;
     flex-shrink: 0;
+    padding-top: 0.4rem;
   }
-  .tl-points {
-    margin: 0 0 0.8rem 1.1rem;
+  .xp-points {
+    margin: 0 0 1.2rem 1.1rem;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
-  .tl-points li {
-    margin-bottom: 0.35rem;
+  .xp-points li {
+    margin-bottom: 0.6rem;
   }
-  .tl-tags {
+  .xp-points :global(.xp-link) {
+    color: var(--accent);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    transition: text-decoration-color var(--t-fast);
+  }
+  .xp-points :global(.xp-link:hover) {
+    text-decoration-color: var(--accent);
+  }
+  .xp-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.45rem;
+    gap: 0.5rem;
   }
 
+  /* ---- Mobile: horizontal tab strip on top ---- */
   @media (max-width: 820px) {
-    .tl-head {
+    .xp {
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+    }
+    .xp-tabs {
+      flex-direction: row;
+      gap: 0.7rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      scrollbar-width: none;
+    }
+    .xp-tabs::-webkit-scrollbar {
+      display: none;
+    }
+    .xp-group {
+      flex-direction: row;
+      gap: 0.5rem;
+    }
+    .xp-group-label {
+      display: none;
+    }
+    .xp-tab {
+      flex-shrink: 0;
+      border-left: none;
+      border: 1px solid var(--border);
+    }
+    .xp-tab[aria-selected='true'] {
+      border-color: var(--accent);
+      box-shadow: none;
+    }
+    .xp-tab-text {
+      white-space: nowrap;
+    }
+    .xp-panel-head {
       flex-direction: column;
-      gap: 0.25rem;
+      gap: 0.3rem;
+    }
+    .xp-period {
+      padding-top: 0;
     }
   }
 </style>
+
+<script is:inline>
+  (function () {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.xp-tab'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('.xp-panel'));
+    if (!tabs.length) return;
+
+    function select(idx, focus) {
+      tabs.forEach(function (t) {
+        var on = t.dataset.idx === String(idx);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        if (on && focus) t.focus();
+      });
+      panels.forEach(function (p) {
+        p.hidden = p.id !== 'xp-panel-' + idx;
+      });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        select(parseInt(tab.dataset.idx, 10), false);
+      });
+      // arrow-key navigation across the rail
+      tab.addEventListener('keydown', function (e) {
+        var order = tabs.map(function (t) {
+          return parseInt(t.dataset.idx, 10);
+        });
+        var pos = order.indexOf(parseInt(tab.dataset.idx, 10));
+        var next = null;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight')
+          next = order[(pos + 1) % order.length];
+        else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft')
+          next = order[(pos - 1 + order.length) % order.length];
+        if (next !== null) {
+          e.preventDefault();
+          select(next, true);
+        }
+      });
+    });
+  })();
+</script>
