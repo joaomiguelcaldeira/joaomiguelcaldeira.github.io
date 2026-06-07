@@ -5,7 +5,6 @@ const rest = projects.filter((p) => !p.featured);
 ---
 
 <section id="projects" class="section projects">
-  <div class="aurora a-proj"></div>
   <div class="section-inner">
     <p class="eyebrow reveal">03 — Projects</p>
     <h2 class="section-title reveal">Things I've <span>built</span></h2>
@@ -91,14 +90,6 @@ const rest = projects.filter((p) => !p.featured);
 </section>
 
 <style>
-  .a-proj {
-    width: 460px;
-    height: 460px;
-    background: var(--accent);
-    bottom: -160px;
-    left: -120px;
-    opacity: 0.12;
-  }
   .proj-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

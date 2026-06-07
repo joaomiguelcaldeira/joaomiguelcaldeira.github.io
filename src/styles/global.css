@@ -243,18 +243,6 @@ html {
   transform: none;
 }
 
-/*==================================================
-  Aurora background glow (shared)
-==================================================*/
-.aurora {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.4;
-  pointer-events: none;
-  z-index: 0;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
