@@ -111,6 +111,10 @@ const rest = projects.filter((p) => !p.featured);
     border-color: var(--border-strong);
     box-shadow: 0 24px 60px -32px var(--accent-glow);
   }
+  /* display:flex above overrides the [hidden] default — restore it */
+  .proj-card[hidden] {
+    display: none;
+  }
   .proj-top {
     display: flex;
     justify-content: space-between;
