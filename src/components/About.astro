@@ -1,0 +1,233 @@
+---
+const stack = [
+  {
+    label: 'Languages',
+    icon: 'fa-code',
+    items: ['Python', 'JavaScript / TS', 'C / C++', 'Java', 'SQL', '.NET'],
+  },
+  {
+    label: 'AI / ML',
+    icon: 'fa-brain',
+    items: ['Hugging Face', 'Ollama', 'RAG', 'PyTorch', 'NLP', 'Computer Vision'],
+  },
+  {
+    label: 'Web & APIs',
+    icon: 'fa-layer-group',
+    items: ['React', 'FastAPI', 'Next.js', 'Node.js', 'Astro'],
+  },
+  {
+    label: 'Cloud & DevOps',
+    icon: 'fa-cloud',
+    items: ['GCP', 'AWS', 'Docker', 'CI/CD', 'PostgreSQL', 'Vercel'],
+  },
+];
+---
+
+<section id="about" class="section about">
+  <div class="aurora a-about"></div>
+  <div class="section-inner">
+    <p class="eyebrow reveal">01 — About</p>
+    <h2 class="section-title reveal">A bit about <span>me</span></h2>
+
+    <div class="about-grid">
+      <!-- Terminal -->
+      <div class="terminal reveal">
+        <div class="terminal-bar">
+          <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+          <span class="terminal-title">about_me.txt</span>
+        </div>
+        <div class="terminal-body">
+          <p id="terminal-text" class="terminal-text"></p>
+        </div>
+      </div>
+
+      <!-- Stack -->
+      <div class="stack reveal" style="--reveal-delay: 120ms">
+        <h3 class="stack-heading">My toolbox</h3>
+        {
+          stack.map((group) => (
+            <div class="stack-group">
+              <div class="stack-label">
+                <i class={`fas ${group.icon}`} />
+                {group.label}
+              </div>
+              <div class="stack-items">
+                {group.items.map((it) => (
+                  <span class="tag">{it}</span>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .a-about {
+    width: 420px;
+    height: 420px;
+    background: var(--accent-2);
+    top: 10%;
+    right: -140px;
+    opacity: 0.12;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  /* Terminal */
+  .terminal {
+    background: #06060a;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+  }
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0.7rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--border);
+  }
+  .tdot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .tdot.r { background: #ff5f57; }
+  .tdot.y { background: #febc2e; }
+  .tdot.g { background: #28c840; }
+  .terminal-title {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+  .terminal-body {
+    padding: 1.25rem 1.4rem;
+    flex: 1;
+  }
+  .terminal-text {
+    font-family: var(--font-mono);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: #c8c8d4;
+    white-space: pre-wrap;
+    min-height: 14em;
+  }
+  .terminal-text :global(.cmd) {
+    color: var(--accent);
+  }
+  .terminal-text :global(.prompt) {
+    color: var(--accent-2);
+  }
+
+  /* Stack */
+  .stack {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.6rem;
+  }
+  .stack-heading {
+    font-size: 1.2rem;
+    margin-bottom: 1.3rem;
+  }
+  .stack-group {
+    margin-bottom: 1.2rem;
+  }
+  .stack-group:last-child {
+    margin-bottom: 0;
+  }
+  .stack-label {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.7rem;
+  }
+  .stack-label i {
+    color: var(--accent);
+  }
+  .stack-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 820px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+    .terminal-text {
+      min-height: auto;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var el = document.getElementById('terminal-text');
+    if (!el) return;
+
+    var prompt = '<span class="prompt">joao@caldeira</span>:~$ <span class="cmd">cat about_me.txt</span>\n\n';
+    var body =
+      "My name is João Caldeira and I enjoy solving problems and automating\n" +
+      "away boring tasks — with AI as my sidekick.\n\n" +
+      "I have a particular interest in financial markets and algorithmic\n" +
+      "trading strategies (profitable ones 🤞).\n\n" +
+      "Applying algorithms to real-world problems is one of the most\n" +
+      "satisfying things there is for me, and I strive for my software to\n" +
+      "be more robust and scalable than it was yesterday.\n\n" +
+      "When I'm not coding, you'll find me stargazing, at the gym, or\n" +
+      "catching up on the latest AI news. 🚀";
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var isMobile = window.innerWidth < 820;
+
+    if (reduce || isMobile) {
+      el.innerHTML = prompt + body;
+      return;
+    }
+
+    // type the prompt (with markup) instantly, then type body char-by-char
+    el.innerHTML = prompt;
+    var i = 0;
+    function type() {
+      if (i < body.length) {
+        el.append(body[i]);
+        i++;
+        setTimeout(type, 16);
+      }
+    }
+
+    // start only when the section scrolls into view
+    var started = false;
+    var obs = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && !started) {
+            started = true;
+            type();
+            obs.disconnect();
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    obs.observe(el);
+  })();
+</script>

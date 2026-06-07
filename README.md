@@ -1,29 +1,39 @@
-# João Caldeira's Portfolio
+# João Caldeira — Portfolio
 
-This website serves as a digital portfolio to introduce me and my Computer Science journey. 
-The webpage is designed as single scroll page with sections:
-- Home
-- About
-- Experience (timeline)
-- Projects
-- Posts (Static LinkedIn Posts)
-- Contact (Forms)
+My personal portfolio: a single-page, scroll-snap site with five full-screen
+sections and an interactive constellation backdrop.
+
+**Live:** https://joaomiguelcaldeira.github.io
+
+## Sections
+- **Home** — intro, rotating role, résumé & contact CTAs
+- **About** — animated terminal bio + categorized tech stack
+- **Experience** — timeline of roles & education
+- **Projects** — featured work, expandable to the full list
+- **Contact** — message form (Formspree) + socials
 
 ## Tech Stack
-[![HTML5](https://img.shields.io/badge/HTML-E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS-1572B6.svg?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Astro](https://astro.build/) (static output, near-zero JS)
+- Vanilla CSS (custom design tokens) + small inline scripts
+- Interactive canvas particle background
+- Deployed to GitHub Pages via GitHub Actions
 
-## Setup & Deployment
-1. Clone the repository:
-   ```
-   git clone https://github.com/joaomiguelcaldeira/joaomiguelcaldeira.io.git
-   ```
-2. Open `index.html` in your browser or use a local development server.
-3. Edit the code as needed to personalize or add new content.
+## Develop
+```bash
+npm install      # install dependencies
+npm run dev      # start dev server at http://localhost:4321
+npm run build    # build static site to ./dist
+npm run preview  # preview the production build
+```
 
-## Credits
-Developed by João Caldeira (Me) 😊.
+## Content
+Experience and projects live as typed data in `src/data/` — edit those files
+to add or update entries. Images and the résumé PDF live in `public/`.
+
+## Deployment
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the
+Astro site and publishes `./dist` to GitHub Pages. Set Pages source to
+"GitHub Actions" in the repository settings.
 
 ## License
 Distributed under the MIT License.

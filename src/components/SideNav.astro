@@ -1,0 +1,121 @@
+---
+const links = [
+  { id: 'home', label: 'Home', icon: 'fa-house' },
+  { id: 'about', label: 'About', icon: 'fa-user' },
+  { id: 'experience', label: 'Experience', icon: 'fa-briefcase' },
+  { id: 'projects', label: 'Projects', icon: 'fa-code' },
+  { id: 'contact', label: 'Contact', icon: 'fa-paper-plane' },
+];
+---
+
+<nav class="sidenav" aria-label="Section navigation">
+  <ul>
+    {
+      links.map((l) => (
+        <li>
+          <a href={`#${l.id}`} data-nav-dot={l.id} aria-label={l.label}>
+            <span class="dot" />
+            <span class="label">{l.label}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .sidenav {
+    position: fixed;
+    right: 1.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+  }
+  .sidenav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .sidenav a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.7rem;
+    color: var(--text-dim);
+  }
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 1.5px solid var(--text-dim);
+    background: transparent;
+    transition: all var(--t-fast);
+    flex-shrink: 0;
+  }
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    transform: translateX(8px);
+    transition: opacity var(--t-fast), transform var(--t-fast);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .sidenav a:hover .label {
+    opacity: 1;
+    transform: none;
+    color: var(--text);
+  }
+  .sidenav a:hover .dot {
+    border-color: var(--accent);
+    transform: scale(1.15);
+  }
+  .sidenav a.active .dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .sidenav a.active .label {
+    opacity: 1;
+    transform: none;
+    color: var(--text);
+  }
+
+  /* Mobile: horizontal bar pinned to bottom */
+  @media (max-width: 820px) {
+    .sidenav {
+      right: 0;
+      left: 0;
+      top: auto;
+      bottom: 0;
+      transform: none;
+      background: rgba(8, 8, 12, 0.72);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border);
+      padding: 0.7rem 0;
+    }
+    .sidenav ul {
+      flex-direction: row;
+      justify-content: space-around;
+      gap: 0;
+    }
+    .sidenav a {
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .dot {
+      display: none;
+    }
+    .label {
+      opacity: 0.6;
+      transform: none;
+      font-size: 0.7rem;
+    }
+    .sidenav a.active .label {
+      color: var(--accent);
+      opacity: 1;
+    }
+  }
+</style>
