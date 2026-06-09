@@ -291,7 +291,10 @@ const roles = ['Software Engineer', 'AI Enthusiast', 'Problem Solver', 'Algorith
       grid-template-columns: 1fr;
       text-align: center;
       justify-items: center;
-      gap: 2rem;
+      gap: 1.5rem;
+    }
+    .photo-ring {
+      width: clamp(110px, 28vw, 150px);
     }
     .hero-role,
     .hero-actions,
@@ -303,6 +306,9 @@ const roles = ['Software Engineer', 'AI Enthusiast', 'Problem Solver', 'Algorith
     }
     .hero-badge {
       margin-inline: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
     }
     .scroll-cue {
       display: none;

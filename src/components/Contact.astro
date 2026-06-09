@@ -47,6 +47,11 @@
   .contact {
     justify-content: center;
   }
+  @media (max-width: 820px) {
+    .contact {
+      padding-bottom: calc(5rem + 56px + env(safe-area-inset-bottom, 0px));
+    }
+  }
   .contact-inner {
     max-width: 600px;
     text-align: center;
