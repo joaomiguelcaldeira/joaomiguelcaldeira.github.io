@@ -116,6 +116,10 @@
     align-self: center;
     margin-top: 0.3rem;
   }
+  .contact-form,
+  .contact-status {
+    transition: opacity 0.5s var(--ease);
+  }
   .contact-status {
     margin-top: 1.2rem;
     font-size: 1.05rem;
@@ -146,7 +150,7 @@
   (function () {
     var form = document.getElementById('contactForm');
     var status = document.getElementById('contactStatus');
-    if (!form) return;
+    if (!form || !status) return;
 
     var messages = [
       '✅ Message received! I\'ll be in touch.',
@@ -154,14 +158,31 @@
       '✨ Got it! Appreciate you reaching out.',
     ];
 
+    function fadeIn(el) {
+      el.hidden = false;
+      el.style.opacity = '0';
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          el.style.opacity = '1';
+        });
+      });
+    }
+
+    function fadeOut(el, cb) {
+      el.style.opacity = '0';
+      setTimeout(function () {
+        el.hidden = true;
+        el.style.opacity = '';
+        if (cb) cb();
+      }, 500);
+    }
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
       var data = new FormData(form);
       var btn = form.querySelector('button[type="submit"]');
-      if (btn) {
-        btn.disabled = true;
-        btn.style.opacity = '0.6';
-      }
+      if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; }
+
       try {
         var res = await fetch(form.action, {
           method: 'POST',
@@ -169,22 +190,26 @@
           headers: { Accept: 'application/json' },
         });
         if (res.ok) {
-          form.hidden = true;
-          status.hidden = false;
-          status.textContent =
-            messages[Math.floor(Math.random() * messages.length)];
+          status.style.color = '';
+          status.textContent = messages[Math.floor(Math.random() * messages.length)];
+          fadeOut(form, function () {
+            fadeIn(status);
+            setTimeout(function () {
+              fadeOut(status, function () {
+                form.reset();
+                if (btn) { btn.disabled = false; btn.style.opacity = ''; }
+                fadeIn(form);
+              });
+            }, 4000);
+          });
         } else {
           throw new Error('bad response');
         }
       } catch (err) {
-        status.hidden = false;
         status.style.color = '#ff6b6b';
         status.textContent = '⚠️ Something went wrong. Try emailing me directly.';
-      } finally {
-        if (btn) {
-          btn.disabled = false;
-          btn.style.opacity = '';
-        }
+        fadeIn(status);
+        if (btn) { btn.disabled = false; btn.style.opacity = ''; }
       }
     });
   })();

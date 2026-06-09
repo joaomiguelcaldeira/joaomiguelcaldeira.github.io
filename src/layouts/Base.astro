@@ -54,6 +54,10 @@ const {
     </style>
 
     <script>
+      // Prevent browser from restoring mid-page scroll position on revisit
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.scrollTo(0, 0);
+
       // ---- Reveal-on-scroll ----
       const revealEls = document.querySelectorAll<HTMLElement>('.reveal');
       const revealObs = new IntersectionObserver(

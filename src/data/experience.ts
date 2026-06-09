@@ -22,10 +22,10 @@ export const experience: ExperienceItem[] = [
     period: 'Mar 2025 - Present',
     points: [
       'Building an AI-powered B2B SaaS platform end-to-end, designing document-understanding systems that extract structured data from unstructured documents and remove hours of manual work.',
-      'Engineering agentic AI pipelines (LLMs, RAG, MCP, Google ADK) and the data integrations behind them, connecting email and cloud-storage sources with secure, permission-scoped access.',
+      'Engineering agentic AI pipelines (LLMs, RAG, MCP, Google ADK) and the data integrations behind them, connecting cloud-storage sources with secure, permission-scoped access.',
       'Owning the full lifecycle across a microservices architecture, from backend APIs to frontend dashboards, deployed on GCP with automated CI/CD and built to enterprise security standards.',
     ],
-    tags: ['Python', 'C# / .NET', 'Generative AI', 'Agentic AI', 'MCP', 'Google ADK', 'GCP', 'Docker', 'Machine Learning', 'Microservices'],
+    tags: ['Python', 'C# / .NET', 'LLMs', 'OCR', 'MCP', 'Google ADK', 'GCP', 'Docker', 'Machine Learning', 'Microservices'],
     kind: 'work',
   },
   {
