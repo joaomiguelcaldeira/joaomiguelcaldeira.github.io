@@ -1,0 +1,222 @@
+---
+import { projects } from '../data/projects.ts';
+const featured = projects.filter((p) => p.featured);
+const rest = projects.filter((p) => !p.featured);
+---
+
+<section id="projects" class="section projects">
+  <div class="section-inner">
+    <p class="eyebrow reveal">03 / Projects</p>
+    <h2 class="section-title reveal">Things I've <span>built</span></h2>
+
+    <div class="proj-grid" id="proj-grid">
+      {
+        featured.map((p, i) => (
+          <article class="proj-card tilt reveal" style={`--reveal-delay: ${i * 80}ms`}>
+            {p.link ? (
+              <a class="proj-ext" href={p.link} target="_blank" rel="noopener" aria-label="Open project">
+                <i class="fas fa-arrow-up-right-from-square" />
+              </a>
+            ) : (
+              <span class="proj-lock"><i class="fas fa-lock" /></span>
+            )}
+            <h3>{p.title}</h3>
+            <p class="proj-desc">{p.description}</p>
+            <div class="proj-tags">
+              {p.tags.map((t) => (
+                <span class="tag">{t}</span>
+              ))}
+            </div>
+            <div class="proj-foot">
+              {p.link ? (
+                <a class="proj-link" href={p.link} target="_blank" rel="noopener">
+                  {p.linkLabel} <i class="fas fa-arrow-right" />
+                </a>
+              ) : (
+                <span class="proj-muted">{p.locked}</span>
+              )}
+            </div>
+          </article>
+        ))
+      }
+
+      {
+        rest.map((p) => (
+          <article class="proj-card tilt extra reveal" hidden>
+            {p.link ? (
+              <a class="proj-ext" href={p.link} target="_blank" rel="noopener" aria-label="Open project">
+                <i class="fas fa-arrow-up-right-from-square" />
+              </a>
+            ) : (
+              <span class="proj-lock"><i class="fas fa-lock" /></span>
+            )}
+            <h3>{p.title}</h3>
+            <p class="proj-desc">{p.description}</p>
+            <div class="proj-tags">
+              {p.tags.map((t) => (
+                <span class="tag">{t}</span>
+              ))}
+            </div>
+            <div class="proj-foot">
+              {p.link ? (
+                <a class="proj-link" href={p.link} target="_blank" rel="noopener">
+                  {p.linkLabel} <i class="fas fa-arrow-right" />
+                </a>
+              ) : (
+                <span class="proj-muted">{p.locked}</span>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    {
+      rest.length > 0 && (
+        <div class="proj-more reveal">
+          <button class="btn" id="proj-toggle" data-magnetic>
+            <i class="fas fa-plus" /> Show {rest.length} more
+          </button>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+    gap: 1.3rem;
+  }
+  .proj-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.4rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    transition: border-color var(--t-fast), box-shadow var(--t-fast),
+      transform var(--t-mid);
+    transform-style: preserve-3d;
+  }
+  .proj-card:hover {
+    border-color: var(--border-strong);
+    box-shadow: 0 24px 60px -32px var(--accent-glow);
+  }
+  /* display:flex above overrides the [hidden] default; restore it */
+  .proj-card[hidden] {
+    display: none;
+  }
+  .proj-ext,
+  .proj-lock {
+    position: absolute;
+    top: 1.4rem;
+    right: 1.4rem;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    transition: color var(--t-fast), transform var(--t-fast);
+  }
+  .proj-ext:hover {
+    color: var(--accent);
+    transform: translate(2px, -2px);
+  }
+  .proj-card h3 {
+    font-size: 1.2rem;
+    padding-right: 1.6rem;
+  }
+  .proj-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    flex: 1;
+  }
+  .proj-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .proj-foot {
+    margin-top: 0.4rem;
+  }
+  .proj-link {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .proj-link i {
+    transition: transform var(--t-fast);
+  }
+  .proj-link:hover i {
+    transform: translateX(4px);
+  }
+  .proj-muted {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-dim);
+  }
+  @media (max-width: 820px) {
+    .proj-grid {
+      gap: 1rem;
+    }
+    .proj-card {
+      padding: 1.2rem;
+    }
+  }
+  .proj-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var toggle = document.getElementById('proj-toggle');
+    var extras = Array.prototype.slice.call(document.querySelectorAll('.proj-card.extra'));
+    if (toggle) {
+      var open = false;
+      toggle.addEventListener('click', function () {
+        open = !open;
+        extras.forEach(function (el, i) {
+          if (open) {
+            el.hidden = false;
+            requestAnimationFrame(function () {
+              setTimeout(function () {
+                el.classList.add('in-view');
+              }, i * 60);
+            });
+          } else {
+            el.hidden = true;
+            el.classList.remove('in-view');
+          }
+        });
+        toggle.innerHTML = open
+          ? '<i class="fas fa-minus"></i> Show less'
+          : '<i class="fas fa-plus"></i> Show ' + extras.length + ' more';
+      });
+    }
+
+    // Subtle 3D tilt on hover
+    var canHover = window.matchMedia('(hover: hover)').matches;
+    if (canHover) {
+      document.querySelectorAll('.tilt').forEach(function (card) {
+        card.addEventListener('pointermove', function (e) {
+          var r = card.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width - 0.5;
+          var py = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform =
+            'perspective(700px) rotateX(' + (-py * 5).toFixed(2) + 'deg) rotateY(' +
+            (px * 5).toFixed(2) + 'deg) translateY(-4px)';
+        });
+        card.addEventListener('pointerleave', function () {
+          card.style.transform = '';
+        });
+      });
+    }
+  })();
+</script>
