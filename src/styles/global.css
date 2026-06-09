@@ -15,7 +15,7 @@
   --text-muted: rgba(233, 233, 240, 0.62);
   --text-dim: rgba(233, 233, 240, 0.4);
 
-  /* accent — change these three to reflavor the whole site */
+  /* accent: change these three to reflavor the whole site */
   --accent: #fb7185;
   --accent-2: #f59e0b;
   --accent-rgb: 251, 113, 133;

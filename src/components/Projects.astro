@@ -6,23 +6,20 @@ const rest = projects.filter((p) => !p.featured);
 
 <section id="projects" class="section projects">
   <div class="section-inner">
-    <p class="eyebrow reveal">03 — Projects</p>
+    <p class="eyebrow reveal">03 / Projects</p>
     <h2 class="section-title reveal">Things I've <span>built</span></h2>
 
     <div class="proj-grid" id="proj-grid">
       {
         featured.map((p, i) => (
           <article class="proj-card tilt reveal" style={`--reveal-delay: ${i * 80}ms`}>
-            <div class="proj-top">
-              <i class="fas fa-folder-open proj-folder" />
-              {p.link ? (
-                <a class="proj-ext" href={p.link} target="_blank" rel="noopener" aria-label="Open project">
-                  <i class="fas fa-arrow-up-right-from-square" />
-                </a>
-              ) : (
-                <span class="proj-lock"><i class="fas fa-lock" /></span>
-              )}
-            </div>
+            {p.link ? (
+              <a class="proj-ext" href={p.link} target="_blank" rel="noopener" aria-label="Open project">
+                <i class="fas fa-arrow-up-right-from-square" />
+              </a>
+            ) : (
+              <span class="proj-lock"><i class="fas fa-lock" /></span>
+            )}
             <h3>{p.title}</h3>
             <p class="proj-desc">{p.description}</p>
             <div class="proj-tags">
@@ -46,16 +43,13 @@ const rest = projects.filter((p) => !p.featured);
       {
         rest.map((p) => (
           <article class="proj-card tilt extra reveal" hidden>
-            <div class="proj-top">
-              <i class="fas fa-folder-open proj-folder" />
-              {p.link ? (
-                <a class="proj-ext" href={p.link} target="_blank" rel="noopener" aria-label="Open project">
-                  <i class="fas fa-arrow-up-right-from-square" />
-                </a>
-              ) : (
-                <span class="proj-lock"><i class="fas fa-lock" /></span>
-              )}
-            </div>
+            {p.link ? (
+              <a class="proj-ext" href={p.link} target="_blank" rel="noopener" aria-label="Open project">
+                <i class="fas fa-arrow-up-right-from-square" />
+              </a>
+            ) : (
+              <span class="proj-lock"><i class="fas fa-lock" /></span>
+            )}
             <h3>{p.title}</h3>
             <p class="proj-desc">{p.description}</p>
             <div class="proj-tags">
@@ -100,6 +94,7 @@ const rest = projects.filter((p) => !p.featured);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     padding: 1.4rem;
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
@@ -111,21 +106,15 @@ const rest = projects.filter((p) => !p.featured);
     border-color: var(--border-strong);
     box-shadow: 0 24px 60px -32px var(--accent-glow);
   }
-  /* display:flex above overrides the [hidden] default — restore it */
+  /* display:flex above overrides the [hidden] default; restore it */
   .proj-card[hidden] {
     display: none;
   }
-  .proj-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .proj-folder {
-    font-size: 1.7rem;
-    color: var(--accent);
-  }
   .proj-ext,
   .proj-lock {
+    position: absolute;
+    top: 1.4rem;
+    right: 1.4rem;
     color: var(--text-dim);
     font-size: 0.95rem;
     transition: color var(--t-fast), transform var(--t-fast);
@@ -136,6 +125,7 @@ const rest = projects.filter((p) => !p.featured);
   }
   .proj-card h3 {
     font-size: 1.2rem;
+    padding-right: 1.6rem;
   }
   .proj-desc {
     color: var(--text-muted);

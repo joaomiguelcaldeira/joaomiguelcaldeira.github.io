@@ -13,16 +13,17 @@ export const projects: Project[] = [
     title: 'SmartPenny',
     description:
       'Personal-finance web app: a unified dashboard for spending and investments, smart invoice/receipt parsing with automatic categorization (DQA), and budget management with real-time tracking.',
-    tags: ['FastAPI', 'React', 'Hugging Face', 'Vercel', 'GCP'],
+    tags: ['FastAPI', 'React', 'LLMs', 'OCR', 'Vercel', 'GCP'],
     locked: 'Private project',
     featured: true,
   },
   {
-    title: 'Slopwatch',
+    title: 'Portfolio v2',
     description:
-      'Tracks AI-slop indicators (CLAUDE.md, .cursor, AGENTS.md) across open-source GitHub repos. Built a ~280k-repo dataset with full metadata, an enrichment pipeline and ongoing snapshot refresh.',
-    tags: ['Next.js', 'PostgreSQL', 'QStash', 'Vercel', 'GitHub API'],
-    locked: 'Private / archived',
+      'This very website, built with Astro: full-screen scroll-snap sections, an interactive particle backdrop and a tabbed experience timeline.',
+    tags: ['Astro', 'CSS', 'JavaScript'],
+    link: 'https://github.com/joaomiguelcaldeira/joaomiguelcaldeira.github.io',
+    linkLabel: 'View on GitHub',
     featured: true,
   },
   {
@@ -35,17 +36,16 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    title: 'Portfolio v2',
+    title: 'Slopwatch',
     description:
-      'This very website — built with Astro: full-screen scroll-snap sections, an interactive particle backdrop and a tabbed experience timeline.',
-    tags: ['Astro', 'CSS', 'JavaScript'],
-    link: 'https://github.com/joaomiguelcaldeira/joaomiguelcaldeira.github.io',
-    linkLabel: 'View on GitHub',
+      'Tracks AI-slop indicators (CLAUDE.md, .cursor, AGENTS.md) across open-source GitHub repos. Built a ~280k-repo dataset with full metadata, an enrichment pipeline and ongoing snapshot refresh.',
+    tags: ['Next.js', 'QStash', 'Vercel', 'GitHub API'],
+    locked: 'Private / archived',
   },
   {
     title: 'Portfolio v1',
     description:
-      'My first portfolio — a single-page scrolling site built from scratch with vanilla HTML, CSS and JavaScript. Where I first explored front-end design.',
+      'My first portfolio: a single-page scrolling site built from scratch with vanilla HTML, CSS and JavaScript. Where I first explored front-end design.',
     tags: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
     link: 'https://github.com/joaomiguelcaldeira/portfolio-v1',
     linkLabel: 'View on GitHub',
@@ -61,7 +61,7 @@ export const projects: Project[] = [
   {
     title: 'MST with Union-Find',
     description:
-      "Maximum connectivity at minimum cost for a transportation network — Kruskal's algorithm finding the minimum spanning tree using a Union-Find (by rank) data structure.",
+      "Maximum connectivity at minimum cost for a transportation network: Kruskal's algorithm finding the minimum spanning tree using a Union-Find (by rank) data structure.",
     tags: ['C', 'Graphs', 'MST', 'Union-Find'],
     link: 'https://github.com/joaomiguelcaldeira/MST-Union-Find',
     linkLabel: 'View on GitHub',

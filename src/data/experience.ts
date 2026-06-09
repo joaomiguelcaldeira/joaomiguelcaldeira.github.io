@@ -19,12 +19,13 @@ export const experience: ExperienceItem[] = [
     url: 'https://www.infosistema.com/',
     logo: '/images/infosistema-logo.png',
     logoWide: true,
-    period: 'Mar 2025 — Present',
+    period: 'Mar 2025 - Present',
     points: [
-      'Architecting and developing full-stack AI-powered applications from scratch — RAG systems, fine-tuned LLMs, computer vision and NLP solutions for document processing and information extraction, using both open-source (Ollama) and commercial LLMs.',
-      'Designing scalable system architectures with a focus on algorithmic performance, owning the full lifecycle: frontend, backend APIs, cloud infrastructure (GCP) and automated deployment pipelines.',
+      'Building an AI-powered B2B SaaS platform end-to-end, designing document-understanding systems that extract structured data from unstructured documents and remove hours of manual work.',
+      'Engineering agentic AI pipelines (LLMs, RAG, MCP, Google ADK) and the data integrations behind them, connecting email and cloud-storage sources with secure, permission-scoped access.',
+      'Owning the full lifecycle across a microservices architecture, from backend APIs to frontend dashboards, deployed on GCP with automated CI/CD and built to enterprise security standards.',
     ],
-    tags: ['Python', '.NET', 'React', 'GCP', 'Hugging Face', 'Ollama'],
+    tags: ['Python', 'C# / .NET', 'Generative AI', 'Agentic AI', 'MCP', 'Google ADK', 'GCP', 'Docker', 'Machine Learning', 'Microservices'],
     kind: 'work',
   },
   {
@@ -33,7 +34,7 @@ export const experience: ExperienceItem[] = [
     org: 'Sky',
     url: 'https://www.sky.com/',
     logo: '/images/sky-logo.png',
-    period: 'Sep 2023 — Mar 2025',
+    period: 'Sep 2023 - Mar 2025',
     points: [
       'Built an API telemetry framework to monitor critical user journeys, improving performance visibility and reducing service defects.',
       'Optimized CI/CD pipelines by integrating automated reporting into communication channels, streamlining workflows and boosting client adoption.',
@@ -48,7 +49,7 @@ export const experience: ExperienceItem[] = [
     org: 'Sky',
     url: 'https://www.sky.com/',
     logo: '/images/sky-logo.png',
-    period: 'Jul 2023 — Sep 2023',
+    period: 'Jul 2023 - Sep 2023',
     points: [
       'Developed automated frameworks for resilience testing across mobile, TV and web platforms.',
       'Gained hands-on experience with Selenium, Appium, Playwright and Cypress.',
@@ -62,10 +63,10 @@ export const experience: ExperienceItem[] = [
     org: 'Instituto Superior Técnico',
     url: 'https://tecnico.ulisboa.pt/en/',
     logo: '/images/ist.png',
-    period: 'Feb 2023 — Nov 2024',
+    period: 'Feb 2023 - Nov 2024',
     points: [
-      'Specialization in Enterprise Systems and IT Service Management.',
-      'Thesis published in <em>Computational Economics</em> (Springer, 2026): <a class="xp-link" href="https://doi.org/10.1007/s10614-025-11252-0" target="_blank" rel="noopener">Dynamic Ensemble of Specialized Models for Multi-Timeframe Stock Market Trend Prediction</a>.',
+      'Specialization in Enterprise Systems and Service Management.',
+      'Master\'s thesis: <a class="xp-link" href="https://scholar.tecnico.ulisboa.pt/records/hwCDopZoqsnEojvlRMR7J_CIRij3peHoQxZ7" target="_blank" rel="noopener">Dynamic Ensemble of Specialized Models for Multi-Timeframe Stock Market Trend Prediction</a>.',
     ],
     tags: ['Machine Learning', 'Autonomous Agents', 'Advanced Algorithms', 'Quant Trading'],
     kind: 'education',
@@ -76,7 +77,7 @@ export const experience: ExperienceItem[] = [
     org: 'Instituto Superior Técnico',
     url: 'https://tecnico.ulisboa.pt/en/',
     logo: '/images/ist.png',
-    period: 'Sep 2018 — Feb 2023',
+    period: 'Sep 2018 - Feb 2023',
     points: [
       'Strong foundation in algorithms, data structures, AI, operating systems and computer networks.',
       'Mentored first-year students with academic guidance and campus resources.',

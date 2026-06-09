@@ -1,5 +1,5 @@
 ---
-const roles = ['Software Engineer', 'AI Builder', 'Problem Solver', 'Algorithmic Trader'];
+const roles = ['Software Engineer', 'AI Enthusiast', 'Problem Solver', 'Algorithmic Trader (allegedly)'];
 ---
 
 <section id="home" class="section hero">
@@ -32,8 +32,8 @@ const roles = ['Software Engineer', 'AI Builder', 'Problem Solver', 'Algorithmic
         <span id="role-rotator" class="role-rotator"></span>
       </p>
       <p class="hero-tagline reveal" style="--reveal-delay: 240ms">
-        I build full-stack, AI-powered applications — turning hard problems into
-        robust, scalable software, with a soft spot for algorithms and financial markets.
+        Mostly I build things, break things, and automate the boring parts, and
+        somewhere in there I fell for trading systems.
       </p>
 
       <div class="hero-actions reveal" style="--reveal-delay: 320ms">
@@ -41,7 +41,7 @@ const roles = ['Software Engineer', 'AI Builder', 'Problem Solver', 'Algorithmic
           <i class="fas fa-paper-plane"></i> Get in touch
         </a>
         <a class="btn" href="/content/joao-caldeira-resume.pdf" target="_blank" data-magnetic>
-          <i class="fas fa-file-arrow-down"></i> Résumé
+          <i class="fas fa-file-arrow-down"></i> CV
         </a>
       </div>
 
@@ -126,23 +126,57 @@ const roles = ['Software Engineer', 'AI Builder', 'Problem Solver', 'Algorithmic
     gap: 1rem;
   }
   .photo-ring {
+    position: relative;
+    isolation: isolate;
     width: clamp(180px, 22vw, 260px);
     aspect-ratio: 1;
     border-radius: 50%;
-    padding: 4px;
-    background: var(--gradient);
-    box-shadow: 0 0 50px -8px var(--accent-glow);
     transition: transform var(--t-mid);
+    will-change: transform;
+  }
+  /* Soft accent glow that gently breathes behind the photo */
+  .photo-ring::before {
+    content: '';
+    position: absolute;
+    inset: -14%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      var(--accent-glow) 0%,
+      transparent 68%
+    );
+    will-change: transform, opacity;
+    animation: glow-breathe 4.5s ease-in-out infinite;
+  }
+  @keyframes glow-breathe {
+    0%,
+    100% {
+      opacity: 0.45;
+      transform: scale(0.92);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.08);
+    }
   }
   .photo-ring:hover {
-    transform: translateY(-6px) scale(1.02);
+    transform: translateY(-6px);
   }
   .photo-ring img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid var(--bg);
+    display: block;
+    border: 1px solid var(--border-strong);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .photo-ring::before {
+      animation: none;
+    }
   }
   .location {
     display: inline-flex;

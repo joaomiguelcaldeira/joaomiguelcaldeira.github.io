@@ -1,64 +1,71 @@
 ---
-const stack = [
-  {
-    label: 'Languages',
-    icon: 'fa-code',
-    items: ['Python', 'JavaScript / TS', 'C / C++', 'Java', 'SQL', '.NET'],
-  },
-  {
-    label: 'AI / ML',
-    icon: 'fa-brain',
-    items: ['Hugging Face', 'Ollama', 'RAG', 'PyTorch', 'NLP', 'Computer Vision'],
-  },
-  {
-    label: 'Web & APIs',
-    icon: 'fa-layer-group',
-    items: ['React', 'FastAPI', 'Next.js', 'Node.js', 'Astro'],
-  },
-  {
-    label: 'Cloud & DevOps',
-    icon: 'fa-cloud',
-    items: ['GCP', 'AWS', 'Docker', 'CI/CD', 'PostgreSQL', 'Vercel'],
-  },
+const stack: { label: string; items: string[]; lead?: boolean }[] = [
+  { label: 'AI / ML', lead: true, items: ['PyTorch', 'Hugging Face', 'Ollama', 'LLMs & RAG', 'NLP', 'Computer Vision'] },
+  { label: 'Web & APIs', items: ['FastAPI', 'Node.js', '.NET', 'React', 'Next.js', 'Astro'] },
+  { label: 'Cloud & DevOps', items: ['GCP', 'AWS', 'Docker', 'PostgreSQL', 'CI/CD'] },
+  { label: 'Languages', items: ['Python', 'TypeScript', 'SQL', 'Java', 'C / C++'] },
 ];
 ---
 
 <section id="about" class="section about">
   <div class="section-inner">
-    <p class="eyebrow reveal">01 — About</p>
+    <p class="eyebrow reveal">01 / About</p>
     <h2 class="section-title reveal">A bit about <span>me</span></h2>
 
     <div class="about-grid">
-      <!-- Terminal -->
-      <div class="terminal reveal">
-        <div class="terminal-bar">
-          <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
-          <span class="terminal-title">about_me.txt</span>
-        </div>
-        <div class="terminal-body">
-          <p id="terminal-text" class="terminal-text"></p>
-        </div>
+      <div class="about-bio">
+        <p class="about-lead reveal">
+          Lately I'm just as focused on <em>how</em> I build as <em>what</em> I
+          build, squeezing the most out of <span>coding agents</span> and new AI
+          tooling to make my day-to-day workflow faster and sharper.
+        </p>
+        <p class="reveal" style="--reveal-delay: 80ms">
+          Financial markets have a particular grip on me: my MSc thesis dug
+          into ML models for predicting market trends, and I've been hooked on
+          <span>trading systems</span> ever since.
+        </p>
+        <p class="reveal" style="--reveal-delay: 160ms">
+          Away from the keyboard, I'm usually reading about space exploration,
+          putting in work at the gym, or three tabs deep in the latest AI news.
+        </p>
+        <p class="about-facts reveal" style="--reveal-delay: 240ms">
+          Based in Lisbon &nbsp;·&nbsp; MSc in Computer Science &amp; Engineering
+        </p>
       </div>
 
-      <!-- Stack -->
-      <div class="stack reveal" style="--reveal-delay: 120ms">
-        <h3 class="stack-heading">My toolbox</h3>
-        {
-          stack.map((group) => (
-            <div class="stack-group">
-              <div class="stack-label">
-                <i class={`fas ${group.icon}`} />
-                {group.label}
-              </div>
-              <div class="stack-items">
-                {group.items.map((it) => (
-                  <span class="tag">{it}</span>
-                ))}
-              </div>
-            </div>
-          ))
-        }
-      </div>
+      <aside class="about-stack reveal" style="--reveal-delay: 160ms">
+        <div class="cmdk" id="toolkit-cmdk">
+          <div class="cmdk-bar">
+            <span class="cmdk-prompt">/</span>
+            <input
+              type="text"
+              class="cmdk-input"
+              id="cmdk-input"
+              placeholder="Search my toolkit…"
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Search technologies"
+            />
+            <span class="cmdk-kbd"><kbd>⌘</kbd><kbd>K</kbd></span>
+          </div>
+          <div class="cmdk-list" id="cmdk-list" role="listbox" aria-label="Toolkit">
+            {
+              stack.map((g) => (
+                <div class={`cmdk-group${g.lead ? ' lead' : ''}`} data-group>
+                  <div class="cmdk-group-label">{g.label}</div>
+                  {g.items.map((it) => (
+                    <div class="cmdk-item" role="option" data-name={it.toLowerCase()}>
+                      <span class="cmdk-item-name">{it}</span>
+                      <span class="cmdk-item-go">↵</span>
+                    </div>
+                  ))}
+                </div>
+              ))
+            }
+            <div class="cmdk-empty" id="cmdk-empty" hidden>No matches.</div>
+          </div>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
@@ -66,159 +73,290 @@ const stack = [
 <style>
   .about-grid {
     display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 2rem;
-    align-items: stretch;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
   }
 
-  /* Terminal */
-  .terminal {
-    background: #06060a;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.8);
-    display: flex;
-    flex-direction: column;
+  /* Bio */
+  .about-bio {
+    position: relative;
+    padding-left: 1.8rem;
   }
-  .terminal-bar {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 0.7rem 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid var(--border);
+  .about-bio::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.35rem;
+    bottom: 0.35rem;
+    width: 2px;
+    border-radius: 2px;
+    background: linear-gradient(
+      to bottom,
+      var(--accent),
+      var(--accent-2),
+      transparent
+    );
   }
-  .tdot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+  .about-lead {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.3vw, 1.65rem);
+    line-height: 1.4;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
   }
-  .tdot.r { background: #ff5f57; }
-  .tdot.y { background: #febc2e; }
-  .tdot.g { background: #28c840; }
-  .terminal-title {
-    margin-left: auto;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-dim);
-  }
-  .terminal-body {
-    padding: 1.25rem 1.4rem;
-    flex: 1;
-  }
-  .terminal-text {
-    font-family: var(--font-mono);
-    font-size: 0.92rem;
-    line-height: 1.7;
-    color: #c8c8d4;
-    white-space: pre-wrap;
-    min-height: 14em;
-  }
-  .terminal-text :global(.cmd) {
+  .about-lead span {
     color: var(--accent);
   }
-  .terminal-text :global(.prompt) {
-    color: var(--accent-2);
+  .about-bio p {
+    color: var(--text-muted);
+    margin-bottom: 1.1rem;
+    max-width: 58ch;
+    line-height: 1.75;
   }
-
-  /* Stack */
-  .stack {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 1.6rem;
+  .about-bio p span {
+    color: var(--accent);
+    font-weight: 500;
   }
-  .stack-heading {
-    font-size: 1.2rem;
-    margin-bottom: 1.3rem;
-  }
-  .stack-group {
-    margin-bottom: 1.2rem;
-  }
-  .stack-group:last-child {
+  .about-facts {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    margin-top: 1.7rem;
     margin-bottom: 0;
   }
-  .stack-label {
+  .about-facts a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    transition: text-decoration-color var(--t-fast);
+  }
+  .about-facts a:hover {
+    text-decoration-color: var(--accent);
+  }
+
+  /* Toolkit: command palette */
+  .cmdk {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+    transition: border-color var(--t-fast), box-shadow var(--t-fast);
+  }
+  .cmdk:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 20px 50px -28px var(--accent-glow);
+  }
+
+  .cmdk-bar {
     display: flex;
     align-items: center;
-    gap: 0.55rem;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 0.7rem;
+    gap: 0.6rem;
+    padding: 0.75rem 0.9rem;
+    border-bottom: 1px solid var(--border);
   }
-  .stack-label i {
+  .cmdk-prompt {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-size: 1rem;
+    line-height: 1;
+  }
+  .cmdk-input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    caret-color: var(--accent);
+  }
+  .cmdk-input::placeholder {
+    color: var(--text-dim);
+  }
+  .cmdk-kbd {
+    display: inline-flex;
+    gap: 0.2rem;
+    flex-shrink: 0;
+  }
+  .cmdk-kbd kbd {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.1rem 0.35rem;
+    line-height: 1.3;
+  }
+
+  .cmdk-list {
+    max-height: clamp(260px, 42vh, 380px);
+    overflow-y: auto;
+    padding: 0.4rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+  }
+  .cmdk-list::-webkit-scrollbar {
+    width: 8px;
+  }
+  .cmdk-list::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 99px;
+  }
+
+  .cmdk-group {
+    margin-bottom: 0.4rem;
+  }
+  .cmdk-group[hidden] {
+    display: none;
+  }
+  .cmdk-group-label {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 0.5rem 0.6rem 0.35rem;
+  }
+  .cmdk-group.lead .cmdk-group-label {
     color: var(--accent);
   }
-  .stack-items {
+
+  .cmdk-item {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 0.5rem 0.6rem;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    cursor: default;
+    border-left: 2px solid transparent;
+    transition: background var(--t-fast), color var(--t-fast),
+      border-color var(--t-fast);
+  }
+  .cmdk-item[hidden] {
+    display: none;
+  }
+  .cmdk-item-go {
+    opacity: 0;
+    color: var(--accent);
+    font-size: 0.8rem;
+    transition: opacity var(--t-fast);
+  }
+  .cmdk-item.active {
+    background: var(--accent-soft);
+    color: var(--text);
+    border-left-color: var(--accent);
+  }
+  .cmdk-item.active .cmdk-item-go {
+    opacity: 1;
+  }
+
+  .cmdk-empty {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    padding: 1rem 0.6rem;
+    text-align: center;
+  }
+  .cmdk-empty[hidden] {
+    display: none;
   }
 
   @media (max-width: 820px) {
     .about-grid {
       grid-template-columns: 1fr;
+      gap: 2.2rem;
     }
-    .terminal-text {
-      min-height: auto;
+    .about-bio {
+      padding-left: 1.2rem;
     }
   }
 </style>
 
 <script is:inline>
   (function () {
-    var el = document.getElementById('terminal-text');
-    if (!el) return;
+    var input = document.getElementById('cmdk-input');
+    var list = document.getElementById('cmdk-list');
+    var empty = document.getElementById('cmdk-empty');
+    if (!input || !list) return;
 
-    var prompt = '<span class="prompt">joao@caldeira</span>:~$ <span class="cmd">cat about_me.txt</span>\n\n';
-    var body =
-      "My name is João Caldeira and I enjoy solving problems and automating\n" +
-      "away boring tasks — with AI as my sidekick.\n\n" +
-      "I have a particular interest in financial markets and algorithmic\n" +
-      "trading strategies (profitable ones 🤞).\n\n" +
-      "Applying algorithms to real-world problems is one of the most\n" +
-      "satisfying things there is for me, and I strive for my software to\n" +
-      "be more robust and scalable than it was yesterday.\n\n" +
-      "When I'm not coding, you'll find me stargazing, at the gym, or\n" +
-      "catching up on the latest AI news. 🚀";
+    var items = Array.prototype.slice.call(list.querySelectorAll('.cmdk-item'));
+    var groups = Array.prototype.slice.call(list.querySelectorAll('.cmdk-group'));
+    var active = -1;
 
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var isMobile = window.innerWidth < 820;
-
-    if (reduce || isMobile) {
-      el.innerHTML = prompt + body;
-      return;
+    function visible() {
+      return items.filter(function (it) {
+        return !it.hidden;
+      });
     }
 
-    // type the prompt (with markup) instantly, then type body char-by-char
-    el.innerHTML = prompt;
-    var i = 0;
-    function type() {
-      if (i < body.length) {
-        el.append(body[i]);
-        i++;
-        setTimeout(type, 16);
+    function setActive(idx) {
+      var vis = visible();
+      items.forEach(function (it) {
+        it.classList.remove('active');
+      });
+      if (!vis.length) {
+        active = -1;
+        return;
       }
+      if (idx < 0) idx = vis.length - 1;
+      if (idx >= vis.length) idx = 0;
+      active = idx;
+      vis[idx].classList.add('active');
+      vis[idx].scrollIntoView({ block: 'nearest' });
     }
 
-    // start only when the section scrolls into view
-    var started = false;
-    var obs = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting && !started) {
-            started = true;
-            type();
-            obs.disconnect();
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
-    obs.observe(el);
+    function filter() {
+      var q = input.value.trim().toLowerCase();
+      items.forEach(function (it) {
+        var match = !q || it.getAttribute('data-name').indexOf(q) !== -1;
+        it.hidden = !match;
+      });
+      groups.forEach(function (g) {
+        g.hidden = !g.querySelector('.cmdk-item:not([hidden])');
+      });
+      var vis = visible();
+      empty.hidden = vis.length > 0;
+      setActive(vis.length ? 0 : -1);
+    }
+
+    input.addEventListener('input', filter);
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setActive(active + 1);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setActive(active - 1);
+      } else if (e.key === 'Escape') {
+        input.value = '';
+        filter();
+      }
+    });
+
+    items.forEach(function (it) {
+      it.addEventListener('mouseenter', function () {
+        var idx = visible().indexOf(it);
+        if (idx >= 0) setActive(idx);
+      });
+    });
+
+    // ⌘K / Ctrl+K to focus the palette
+    document.addEventListener('keydown', function (e) {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        input.focus({ preventScroll: true });
+      }
+    });
+
+    filter();
   })();
 </script>
