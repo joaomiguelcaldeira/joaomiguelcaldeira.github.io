@@ -13,6 +13,7 @@ const logoData: { name: string; slug: string; x: number; y: number; anim: string
   { name: 'Vercel',          slug: 'vercel',        x: 63, y: 76, anim: 'a', dur: 14, color: 'e9e9f0' },
   { name: 'PostgreSQL',      slug: 'postgresql',    x: 76, y: 82, anim: 'b', dur: 17 },
   { name: '.NET',            slug: 'dotnet',        x: 20, y: 55, anim: 'b', dur: 19 },
+  { name: 'Kubernetes',      slug: 'kubernetes',    x: 5,  y: 72, anim: 'c', dur: 15 },
 ];
 const logos = logoData.map((l, i) => ({ ...l, delay: -(i * 1.5) }));
 ---
